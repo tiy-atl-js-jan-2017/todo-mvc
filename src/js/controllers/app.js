@@ -7,26 +7,24 @@ class AppController {
     this.list = list;
   }
 
-  start () {
-    var app = this;
+  formHandler (event) {
     console.log("this is: ", this);
 
-    this.form.submit(function (event) {
-      console.log("this is: ", this);
-      console.log("app is: ", app);
+    event.preventDefault();
 
-      event.preventDefault();
+    var title = $("#task-title").val();
+    var dueDate = $("#task-due").val();
+    var task = this.list.addTask(title, dueDate);
 
-      var title = $("#task-title").val();
-      var dueDate = $("#task-due").val();
-      var task = app.list.addTask(title, dueDate);
+    console.log(task);
+    console.log(this.list);
 
-      console.log(task);
-      console.log(app.list);
+    var taskHtml = this.taskTemplate(task);
+    this.container.append(taskHtml);
+  }
 
-      var taskHtml = app.taskTemplate(task);
-      app.container.append(taskHtml);
-    });
+  start () {
+    this.form.submit(this.formHandler.bind(this));
   }
 
   taskTemplate (task) {
