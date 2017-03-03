@@ -24,6 +24,13 @@ class AppController {
   }
 
   start () {
+    this.container.click((event) => {
+      $(event.target).toggleClass("completed");
+      var htmlId = event.target.id;
+      this.list.findTask(htmlId).toggleCompleted();
+      console.log(this.list);
+    });
+
     // this.form.submit(this.formHandler.bind(this))
     this.form.submit((event) => this.formHandler(event));
 
@@ -35,7 +42,7 @@ class AppController {
   }
 
   taskTemplate (task) {
-    return `<li>${task.title}</li>`;
+    return `<li id="task-${task.id}">${task.title}</li>`;
   }
 }
 

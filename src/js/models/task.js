@@ -1,14 +1,15 @@
 class Task {
   constructor (options) {
     options = options || {};
+    this.id = options.id;
     this.title = options.title;
     this.dueDate = options.dueDate;
     this.completed = options.completed;
     this.priority = options.priority;
   }
 
-  toggleComplete () {
-    this.complete = !this.complete;
+  toggleCompleted () {
+    this.completed = !this.completed;
   }
 
   changePriority (priority) {
