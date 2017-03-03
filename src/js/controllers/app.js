@@ -24,7 +24,14 @@ class AppController {
   }
 
   start () {
-    this.form.submit(this.formHandler.bind(this));
+    // this.form.submit(this.formHandler.bind(this))
+    this.form.submit((event) => this.formHandler(event));
+
+    // this.form.submit((event) => {
+    //   event.preventDefault();
+    //   // things with this work the way i want
+    //   // i have the app as my this, not some random thing or undefined
+    // });
   }
 
   taskTemplate (task) {
